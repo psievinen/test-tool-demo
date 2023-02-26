@@ -1,4 +1,4 @@
-# Testing Demo
+# Test Tool Demo
 
 This demo repository targets website [Aquabot](https://aquabottesting.com/)
 
