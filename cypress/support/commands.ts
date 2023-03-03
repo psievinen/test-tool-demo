@@ -13,6 +13,33 @@
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 
+Cypress.Commands.add('login', (username: string, password: string) => {
+  cy.get('username').clear().type(username)
+  cy.get('password').clear().type(password)
+  cy.get('login-button').submit()
+})
+
+Cypress.Commands.add('assertFailedLogin', (errorMsg: string) => {
+  cy.get('error').should('be.visible')
+  cy.get('error').should('contain', errorMsg)
+})
+
+Cypress.Commands.add('assertAscendingAlphabetOrder', () => {
+
+})
+
+Cypress.Commands.add('assertDescendingAlphabetOrder', () => {
+
+})
+
+Cypress.Commands.add('assertAscendingPriceOrder', () => {
+
+})
+
+Cypress.Commands.add('assertDescendingPriceOrder', () => {
+
+})
+
 Cypress.Commands.add('clickSubmitFormButton', () => {
   return cy.get('#submit').click();
 })

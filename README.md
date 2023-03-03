@@ -1,17 +1,16 @@
 # Test Tool Demo
 
-This demo repository targets website [Aquabot](https://aquabottesting.com/)
+This demo repository targets [Sauce Labs demo site](https://www.saucedemo.com/)
+
+## Requirements
+
+To use this repository you need to have [Node.js](https://nodejs.org/) installed
 
 ## Installation
 
-To install all dependencies use `npm ci` or `npm install`, just make sure that you have node installed.
-
-## About the tests
-
-There are two tests implemented in two different ways:
-1. Page Object Model (POM) `fillFormPOM.spec.cy.ts`
-2. Using Cypress custom commands `fillForm.spec.cy.ts`
+To install all dependencies use `npm ci` or `npm install`.
 
 ## How To run the tests
 
-Use command `npm run cypress:open` to open the cypress GUI
+1. Cypress CLI use command `npm run cypress:run`.
+2. Cypress GUI use command `npm run cypress:open`. and follow the E2E test instructions

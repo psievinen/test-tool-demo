@@ -46,3 +46,6 @@ export function assertEmptyFields() {
   cy.get(formSelectors.openTextField).should('contain.value', '')
   cy.get(formSelectors.successMsgCheckBox).should('not.be.checked')
 }
+
+//#inventory_container > div > div:nth-child(1)
+//#inventory_container > div > div:nth-child(2)
