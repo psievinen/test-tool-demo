@@ -1,7 +1,3 @@
-/*
- * Logout
- */
-
 describe('', () => {
   beforeEach(() => {
     cy.login('standard_user','secret_sauce')

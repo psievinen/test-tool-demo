@@ -1,14 +1,3 @@
-/*
- * Login tests
- *
- * 1. successful login
- * 2. failed login
- * 2.1 invalid user
- * 2.2 invalid pwd
- * 2.3. both invalid
- * 3. blocked user
- */
-
 describe('Login tests', () => {
   beforeEach(() => {
     cy.visit('/')

@@ -12,5 +12,5 @@ To install all dependencies use `npm ci` or `npm install`.
 
 ## How To run the tests
 
-1. Cypress CLI use command `npm run cypress:run`.
-2. Cypress GUI use command `npm run cypress:open`. and follow the E2E test instructions
+1. Cypress CLI: use command `npm run cypress:run`.
+2. Cypress GUI: use command `npm run cypress:open`. and follow the E2E test instructions
