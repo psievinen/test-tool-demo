@@ -1,7 +1,7 @@
 describe('Sorting tests', () => {
   beforeEach(() => {
+    cy.visit('/')
     cy.login('standard_user','secret_sauce')
-    cy.resetAppState()
   })
 
   it('Sort: price is from low to high', () => {
@@ -23,8 +23,8 @@ describe('Sorting tests', () => {
 
 describe('Add products to cart', () => {
   beforeEach(() => {
+    cy.visit('/')
     cy.login('standard_user','secret_sauce')
-    cy.resetAppState()
   })
 
   it('Add product to cart from main page', () => {
@@ -35,7 +35,7 @@ describe('Add products to cart', () => {
 
   it('Add product to cart from product page', () => {
     // go to bike light detail page
-    cy.get('item_0_title_link').click()
+    cy.get('#item_0_title_link').click()
     cy.addBikeLightToCart()
     cy.toShoppingCart()
     cy.assertBikeLightIsInCart()
@@ -44,30 +44,30 @@ describe('Add products to cart', () => {
 
 describe('Remove products from cart', () => {
   beforeEach(() => {
+    cy.visit('/')
     cy.login('standard_user','secret_sauce')
-    cy.resetAppState()
     cy.addBikeLightToCart()
     cy.toShoppingCart()
     cy.assertBikeLightIsInCart()
-    cy.get('continue-shopping').click()
+    cy.get('[data-test="continue-shopping"]').click()
     cy.url().should('contain', 'inventory.html')
   })
 
   it('Remove product from cart from main page', () => {
-    cy.get('remove-sauce-labs-bike-light').click()
+    cy.get('#remove-sauce-labs-bike-light').click()
     cy.assertCartIsEmpty()
   });
 
   it('Remove product from cart from product page', () => {
     // go to bike light detail page
-    cy.get('item_0_title_link').click()
-    cy.get('remove-sauce-labs-bike-light').click()
+    cy.get('#item_0_title_link').click()
+    cy.get('#remove-sauce-labs-bike-light').click()
     cy.assertCartIsEmpty()
   });
 
   it('Remove product from cart when in cart page', () => {
     cy.toShoppingCart()
-    cy.get('remove-sauce-labs-bike-light').click()
+    cy.get('#remove-sauce-labs-bike-light').click()
     cy.get('.inventory_item_name').should('not.exist')
   });
 })

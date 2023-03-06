@@ -1,27 +1,35 @@
 describe('Customer information validation', () => {
   beforeEach(() => {
+    cy.visit('/')
     cy.login('standard_user','secret_sauce')
+    // cy.resetAppState()
     cy.toShoppingCart()
-    cy.get('checkout').click()
+    cy.get('[data-test="checkout"]').click()
   })
 
   it('No customer information provided', () => {
-    cy.fillCustomerInformation('', '', '')
+    cy.get('#continue').click()
     cy.assertFormErrors('Error: First Name is required')
   })
 
   it('No first name information provided', () => {
-    cy.fillCustomerInformation('', 'engineer', 'postal')
+    cy.get('#last-name').type('engineer')
+    cy.get('#postal-code').type('postal')
+    cy.get('#continue').click()
     cy.assertFormErrors('Error: First Name is required')
   })
 
   it('No last name information provided', () => {
-    cy.fillCustomerInformation('test', '', 'postal')
+    cy.get('#first-name').type('test')
+    cy.get('#postal-code').type('postal')
+    cy.get('#continue').click()
     cy.assertFormErrors('Error: Last Name is required')
   })
 
   it('No postal code information provided', () => {
-    cy.fillCustomerInformation('test', 'engineer', '')
+    cy.get('#first-name').type('test')
+    cy.get('#last-name').type('engineer')
+    cy.get('#continue').click()
     cy.assertFormErrors('Error: Postal Code is required')
   })
 
@@ -33,13 +41,13 @@ describe('Customer information validation', () => {
 
 describe('Checkout Page validation', () => {
   beforeEach(() => {
+    cy.visit('/')
     cy.login('standard_user','secret_sauce')
-    cy.resetAppState()
+    // cy.resetAppState()
     cy.addBikeLightToCart()
     cy.toShoppingCart()
-    cy.get('checkout').click()
+    cy.get('#checkout').click()
     cy.fillCustomerInformation('test', 'engineer', 'postal')
-    cy.get('continue').submit()
   })
 
   it('Validate item total', () => {
@@ -50,6 +58,6 @@ describe('Checkout Page validation', () => {
   it('Validate price calculations', () => {
     cy.get('.summary_subtotal_label').eq(0).should('contain.text', '9.99')
     cy.get('.summary_tax_label').eq(0).should('contain.text', '0.80')
-    cy.get('.summary_info_label summary_total_label').eq(0).should('contain.text', '10.79')
+    cy.get('.summary_total_label').eq(0).should('contain.text', '10.79')
   })
 })
