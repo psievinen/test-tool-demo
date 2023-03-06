@@ -6,7 +6,7 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "testcafe:headless": "testcafe chrome:headless ./testcafe/test/* --reporter spec",
+    "testcafe:headless": "testcafe chrome:headless ./testcafe/test/* --reporter spec,spec:./testcafe/reports/report.txt",
     "testcafe:chrome": "testcafe chrome ./testcafe/test/* --reporter spec"
   },
   "author": "Pauli Sievinen",

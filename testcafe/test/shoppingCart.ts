@@ -17,7 +17,7 @@ fixture('Shopping cart tests for saucedemo.com')
     await resetAppState()
 });
 
-test('Add head light to shopping cart and remove it from main page', async () => {
+test('Add bike light to shopping cart and remove it using main page', async () => {
     await addBikeLightToCart()
     await toShoppingCart()
     await backlightIsInTheCart()
@@ -27,7 +27,7 @@ test('Add head light to shopping cart and remove it from main page', async () =>
     await shoppingCartIsEmpty()
 })
 
-test('Add head light to shopping cart and remove it from detail page', async () => {
+test('Add bike light to shopping cart and remove it using bike light detail page', async () => {
     await toBikeLightDetailPage()
     await addBikeLightToCart()
     await toShoppingCart()
