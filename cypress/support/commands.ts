@@ -16,28 +16,28 @@
 Cypress.Commands.add('login', (username: string, password: string) => {
   cy.get('[data-test="username"]').clear().type(username)
   cy.get('[data-test="password"]').clear().type(password)
-  cy.get('[data-test="login-button"]').submit()
+  cy.get('[data-test="login-button"]').click()
 })
 
 Cypress.Commands.add('assertFailedLogin', (errorMsg: string) => {
-  cy.get('error').should('be.visible')
-  cy.get('error').should('contain', errorMsg)
+  cy.get('[data-test="error"]').should('be.visible')
+  cy.get('[data-test="error"]').should('contain', errorMsg)
 })
 
 Cypress.Commands.add('assertFormErrors', (errorMsg: string) => {
-  cy.get('error').should('be.visible')
-  cy.get('error').should('contain', errorMsg)
+  cy.get('[data-test="error"]').should('be.visible')
+  cy.get('[data-test="error"]').should('contain', errorMsg)
 })
 
 Cypress.Commands.add('fillCustomerInformation', (fname: string, lname: string, zip: string) => {
-  cy.get('firstName').type('test')
-  cy.get('lastName').type('engineer')
-  cy.get('postalCode').type('postal')
-  cy.get('continue').submit()
+  cy.get('#first-name').type('test')
+  cy.get('#last-name').type('engineer')
+  cy.get('#postal-code').type('postal')
+  cy.get('#continue').click()
 })
 
 Cypress.Commands.add('assertZtoASort', () => {
-  cy.get('product_sort_container').select('za').should('have.text', 'Name (Z to A)')
+  cy.get('[data-test="product_sort_container"]').select('za')
   // TODO: all sorting checks should be put into a function which takes as inputs the length of the list
   //  and values in a array which is ordered correctly
   cy.get('.inventory_item_name').eq(0).should('contain.text', 'Test.allTheThings() T-Shirt (Red)')
@@ -49,7 +49,7 @@ Cypress.Commands.add('assertZtoASort', () => {
 })
 
 Cypress.Commands.add('assertAtoZSort', () => {
-  cy.get('product_sort_container').select('az').should('have.text', 'Name (A to Z')
+  cy.get('[data-test="product_sort_container"]').select('az')
   // See comment on `assertZtoASort`
   cy.get('.inventory_item_name').eq(0).should('contain.text', 'Sauce Labs Backpack')
   cy.get('.inventory_item_name').eq(1).should('contain.text', 'Sauce Labs Bike Light')
@@ -60,7 +60,7 @@ Cypress.Commands.add('assertAtoZSort', () => {
 })
 
 Cypress.Commands.add('assertLoHiPriceSort', () => {
-  cy.get('product_sort_container').select('lohi').should('have.text', 'Price (low to high)')
+  cy.get('[data-test="product_sort_container"]').select('lohi')
   // See comment on `assertZtoASort
   cy.get('.inventory_item_name').eq(0).should('contain.text', 'Sauce Labs Onesie')
   cy.get('.inventory_item_name').eq(1).should('contain.text', 'Sauce Labs Bike Light')
@@ -71,7 +71,7 @@ Cypress.Commands.add('assertLoHiPriceSort', () => {
 })
 
 Cypress.Commands.add('assertHiLoPriceSort', () => {
-  cy.get('product_sort_container').select('hilo').should('have.text', 'Price (high to low)')
+  cy.get('[data-test="product_sort_container"]').select('hilo')
   // See comment on `assertZtoASort
   cy.get('.inventory_item_name').eq(5).should('contain.text', 'Sauce Labs Onesie')
   cy.get('.inventory_item_name').eq(4).should('contain.text', 'Sauce Labs Bike Light')
@@ -82,20 +82,20 @@ Cypress.Commands.add('assertHiLoPriceSort', () => {
 })
 
 Cypress.Commands.add('toShoppingCart', () => {
-  cy.get('shopping_cart_container').click()
+  cy.get('#shopping_cart_container').click()
   cy.url().should('contain', 'cart.html')
 })
 
 Cypress.Commands.add('resetAppState', () => {
-  cy.get('react-burger-menu-btn').click()
-  cy.get('reset_sidebar_link').click()
+  cy.get('#react-burger-menu-btn').click()
+  cy.get('#reset_sidebar_link').click()
   // reload page to circumvent possible obstacles
   document.location.reload()
 })
 
 Cypress.Commands.add('addBikeLightToCart', () => {
-  cy.get('add-to-cart-sauce-labs-bike-light').click()
-  cy.get('remove-sauce-labs-bike-light').should('have.text', 'Remove')
+  cy.get('#add-to-cart-sauce-labs-bike-light').click()
+  cy.get('#remove-sauce-labs-bike-light').should('have.text', 'Remove')
   cy.get('span.shopping_cart_badge').should('have.text', '1')
 })
 

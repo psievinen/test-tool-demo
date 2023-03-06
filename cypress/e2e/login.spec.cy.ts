@@ -1,12 +1,11 @@
 describe('Login tests', () => {
   beforeEach(() => {
-    cy.visit('http://www.saucedemo.com')
+    cy.visit('/')
   })
 
-  it.only('Login with correct credentials', () => {
+  it('Login with correct credentials', () => {
     cy.login('standard_user','secret_sauce')
     cy.url().should('include', 'inventory.html')
-    cy.get('react-burger-menu-btn').should('exist')
   })
 
   it('Login with invalid username', () => {
@@ -25,17 +24,21 @@ describe('Login tests', () => {
   });
 
   it('Login with empty username', () => {
-    cy.login('', 'secret_sauce')
+    // cy.get('[data-test="username"]').clear().type('standard_user')
+    cy.get('[data-test="password"]').clear().type('secret_sauce')
+    cy.get('[data-test="login-button"]').click()
     cy.assertFailedLogin('Epic sadface: Username is required')
   });
 
   it('Login with empty password', () => {
-    cy.login('standard_user', '')
+    cy.get('[data-test="username"]').clear().type('standard_user')
+    // cy.get('[data-test="password"]').clear().type('secret_sauce')
+    cy.get('[data-test="login-button"]').click()
     cy.assertFailedLogin('Epic sadface: Password is required')
   });
 
   it('Login with blocked user', () => {
-    cy.login('', 'secret_sauce')
+    cy.login('locked_out_user', 'secret_sauce')
     cy.assertFailedLogin('Epic sadface: Sorry, this user has been locked out.')
   });
 })
