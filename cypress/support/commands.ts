@@ -14,9 +14,9 @@
 // Cypress.Commands.add('login', (email, password) => { ... })
 
 Cypress.Commands.add('login', (username: string, password: string) => {
-  cy.get('username').clear().type(username)
-  cy.get('password').clear().type(password)
-  cy.get('login-button').submit()
+  cy.get('[data-test="username"]').clear().type(username)
+  cy.get('[data-test="password"]').clear().type(password)
+  cy.get('[data-test="login-button"]').submit()
 })
 
 Cypress.Commands.add('assertFailedLogin', (errorMsg: string) => {

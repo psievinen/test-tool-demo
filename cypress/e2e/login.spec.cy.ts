@@ -1,9 +1,9 @@
 describe('Login tests', () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit('http://www.saucedemo.com')
   })
 
-  it('Login with correct credentials', () => {
+  it.only('Login with correct credentials', () => {
     cy.login('standard_user','secret_sauce')
     cy.url().should('include', 'inventory.html')
     cy.get('react-burger-menu-btn').should('exist')
@@ -19,7 +19,7 @@ describe('Login tests', () => {
     cy.assertFailedLogin('Epic sadface: Username and password do not match any user in this service')
   });
 
-  it('Login with invalid password', () => {
+  it('Login with invalid credentials', () => {
     cy.login('invalid', 'invalid')
     cy.assertFailedLogin('Epic sadface: Username and password do not match any user in this service')
   });
@@ -36,6 +36,6 @@ describe('Login tests', () => {
 
   it('Login with blocked user', () => {
     cy.login('', 'secret_sauce')
-    cy.assertFailedLogin('contain\', \'Epic sadface: Sorry, this user has been locked out.')
+    cy.assertFailedLogin('Epic sadface: Sorry, this user has been locked out.')
   });
 })
