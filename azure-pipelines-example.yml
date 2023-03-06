@@ -1,0 +1,21 @@
+jobs:
+  - job: e2e_tests_sauce_demo
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '16.15'
+        displayName: 'Install Node.js'
+      - script: npm install
+        displayName: 'Install all required packages'
+      - script: npm run <your command from package.json>
+        displayName: 'Run <insert your test framework here> Tests'
+        continueOnError: true
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFiles: '<path to report>'
+          testResultsFormat: '<how are they formatted>'
+          publishRunAttachments: true
+          failTaskOnFailedTests: false
+          testRunTitle: "My Demo in azure"
