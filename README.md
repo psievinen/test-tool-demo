@@ -4,7 +4,9 @@ This demo repository targets [Sauce Labs demo site](https://www.saucedemo.com/).
 
 ## Requirements
 
-To use this repository you need to have [Node.js](https://nodejs.org/) installed
+To use this repository you need to have following installed 
+1. [Node.js](https://nodejs.org/) 
+2. [Chrome](https://www.google.com/chrome/)
 
 ## Installation
 
